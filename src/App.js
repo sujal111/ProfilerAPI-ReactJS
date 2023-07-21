@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Profiler } from 'react';
+import Counter from './Counter'
+
+const log = (id, phase, actualTime, baseTime, startTime, commitTime, interactions) => {
+  console.table({ id, phase, actualTime, baseTime, startTime, commitTime, interactions })
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ margin: '50px' }}>
+      <Profiler id="Counter" onRender={log}>
+        <Counter />
+      </Profiler>
     </div>
   );
 }
